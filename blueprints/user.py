@@ -28,6 +28,8 @@ def add():
         if user != None:
             flash('用户已存在', 'danger')
         else:
+            # 开启事务
+            db.session.begin()
             new_user = User(username=username, password=password)
             db.session.add(new_user)
             # 提交事务
